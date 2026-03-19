@@ -5,9 +5,10 @@
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.3.0",
+    "mongoose": "^9.3.1",
     "mysql2": "^3.20.0",
-    "sequelize": "^6.37.8"
+    "sequelize": "^6.37.8",
+    "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
@@ -18,5 +19,24 @@
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
-  }
+  },
+  "name": "webbserverprojekt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Heoemeo/Webbserverprojekt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Heoemeo/Webbserverprojekt/issues"
+  },
+  "homepage": "https://github.com/Heoemeo/Webbserverprojekt#readme"
 }

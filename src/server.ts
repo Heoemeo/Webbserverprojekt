@@ -2,8 +2,8 @@ import  express  from "express"
 import cors from "cors"
 
 //import routes
-import habitRoutes from "./routes/habitRoutes"
-import logRoutes from "./routes/logRoutes"
+//import habitRoutes from "./routes/habitRoutes"
+//import logRoutes from "./routes/logRoutes"
 
 //creates express server
 const app = express()
@@ -15,9 +15,14 @@ app.use(express.json)
 app.use(cors())
 
 //connect routes to api
-app.use("/api", habitRoutes)
+//app.use("/api", habitRoutes)
 
-app.use("/api", logRoutes)
+//app.use("/api", logRoutes)
+
+app.get('/', (req, res) => {
+ 
+  res.json({message: "Welcome to the User API"});
+});
 
 app.listen(3000, () =>{
     console.log("server running on port 3000")
