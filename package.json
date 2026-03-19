@@ -7,7 +7,8 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.3.1",
     "mysql2": "^3.20.0",
-    "sequelize": "^6.37.8"
+    "sequelize": "^6.37.8",
+    "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
@@ -24,7 +25,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server.ts"
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
