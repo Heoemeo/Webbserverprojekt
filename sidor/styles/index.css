@@ -21,6 +21,13 @@
     justify-content: center;
     align-items: center;
     height: 20rem;
+    font-size: 1rem;
+    font-weight: 350;
+}
+
+.info p {
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 footer {
