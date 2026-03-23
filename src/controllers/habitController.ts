@@ -9,13 +9,14 @@ export const getHabits = async (req: Request, res: Response) => {
 }
 //Create a new habit
 export const createHabit = async (req: Request, res: Response) => {
-    const { title, description } = req.body
+    const { user_id, frequency_id, title, description, is_active } = req.body
 
-    //new habit to database
-    await db.query(
-        "INSERT INTO habits (title, description) VALUES (?, ?)",
-        [title, description]
-    )
+        await db.query(
+            `INSERT INTO habits 
+            (user_id, frequency_id, title, description, is_active, created_at)
+            VALUES (?, ?, ?, ?, ?, NOW())`,
+            [user_id, frequency_id, title, description, is_active]
+        )
     res.json({message: "habit created"})
 }
 
