@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: lightgray;
+    
 }
 
 .nav-container a {
@@ -16,7 +16,7 @@
 footer {
     text-align: center;
     padding: 10px;
-    background-color: lightgray;
+
     position: fixed;
     width: 100%;
     bottom: 0;
@@ -49,4 +49,10 @@ footer div a {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.nav-container h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: #00846e;
 }
