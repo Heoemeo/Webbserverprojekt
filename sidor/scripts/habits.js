@@ -30,6 +30,7 @@ async function loadHabits() {
         })
     } catch (error) {
         console.error("Could not load habits:", error)
+        alert("Server error while loading habits")
     }
 }
 
@@ -47,13 +48,16 @@ async function startHabit(habitId) {
             })
         })
 
+        const data = await response.json()
+
         if (response.ok) {
-            alert("Habit logged!")
+            alert(data.message || "Habit logged!")
         } else {
-            alert("Could not log habit")
+            alert(data.message || "Could not log habit")
         }
     } catch (error) {
         console.error("Could not create log:", error)
+        alert("Server error while logging habit")
     }
 }
 
@@ -63,21 +67,29 @@ async function deleteHabit(habitId) {
             method: "DELETE"
         })
 
+        const data = await response.json()
+
         if (response.ok) {
             loadHabits()
         } else {
-            alert("Could not delete habit")
+            alert(data.message || "Could not delete habit")
         }
     } catch (error) {
         console.error("Could not delete habit:", error)
+        alert("Server error while deleting habit")
     }
 }
 
 document.getElementById("habit-form").addEventListener("submit", async (e) => {
     e.preventDefault()
 
-    const title = document.getElementById("title").value
-    const description = document.getElementById("description").value
+    const title = document.getElementById("title").value.trim()
+    const description = document.getElementById("description").value.trim()
+
+    if (!title) {
+        alert("Title is required")
+        return
+    }
 
     try {
         const response = await fetch("/api/habits", {
@@ -86,22 +98,23 @@ document.getElementById("habit-form").addEventListener("submit", async (e) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                user_id: 1,
-                frequency_id: 1,
                 title,
                 description,
                 is_active: true
             })
         })
 
+        const data = await response.json()
+
         if (response.ok) {
             document.getElementById("habit-form").reset()
             loadHabits()
         } else {
-            alert("Could not create habit")
+            alert(data.message || "Could not create habit")
         }
     } catch (error) {
         console.error("Could not create habit:", error)
+        alert("Server error while creating habit")
     }
 })
 
