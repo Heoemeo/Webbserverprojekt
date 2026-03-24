@@ -10,15 +10,15 @@
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
             crossorigin="anonymous"
         />
-        <title>Document</title>
+        <title>Habits</title>
     </head>
     <body>
         <nav>
             <section class="nav-container">
-                <h1>HabitTracker</h1>
+                <h1>Habito</h1>
                 <div>
                     <a href="index.html">Home</a>
-                    <a href="habits.html">Habits </a>
+                    <a href="habits.html">Habits</a>
                     <a href="profile.html">Profile</a>
                     <a href="about.html">About</a>
                     <a href="contact.html">Contact</a>
@@ -26,26 +26,56 @@
             </section>
         </nav>
 
+        <main class="container mt-4">
+            <h2 class="mb-4">Your Habits</h2>
+
+            <form id="habit-form" class="mb-4">
+                <div class="mb-2">
+                    <input
+                        id="title"
+                        class="form-control"
+                        type="text"
+                        placeholder="Habit title"
+                        required
+                    />
+                </div>
+
+                <div class="mb-2">
+                    <input
+                        id="description"
+                        class="form-control"
+                        type="text"
+                        placeholder="Description"
+                    />
+                </div>
+
+                <button class="btn btn-success" type="submit">
+                    Create Habit
+                </button>
+            </form>
+
+            <div id="habit-list" class="d-flex flex-column gap-3"></div>
+        </main>
+
         <footer>
             <div>
                 <h4>Contact</h4>
-                <a href="#">Email Us</a>
+                <a href="contact.html">Email Us</a>
                 <a href="#">Facebook</a>
                 <a href="#">Twitter</a>
             </div>
             <div>
                 <h4>Habito</h4>
                 <a href="index.html">Home</a>
-                <a href="habits.html">Habits </a>
+                <a href="habits.html">Habits</a>
                 <a href="profile.html">Profile</a>
             </div>
             <div>
                 <h4>About</h4>
-                <a href="#">Our Story</a>
-                <a href="#">Team</a>
-                <a href="#">Careers</a>
+                <a href="about.html">Our Story</a>
             </div>
-            <script src="scripts/habits.js"></script>
         </footer>
+
+        <script src="scripts/habits.js"></script>
     </body>
 </html>
