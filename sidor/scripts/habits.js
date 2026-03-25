@@ -11,20 +11,20 @@ async function loadHabits() {
             card.className = "card text-center"
 
             card.innerHTML = `
-                <div class="card-header">Habit</div>
-                <div class="card-body">
-                    <h5 class="card-title">${habit.title}</h5>
-                    <p class="card-text">${habit.description ?? ""}</p>
-                    <div class="d-flex justify-content-center gap-2">
-                        <button class="btn btn-primary" onclick="startHabit(${habit.id})">
-                            Start Habit
-                        </button>
-                        <button class="btn btn-danger" onclick="deleteHabit(${habit.id})">
-                            Delete Habit
-                        </button>
-                    </div>
-                </div>
-            `
+             <div class="card-header">Habit</div>
+             <div class="card-body">
+                 <h5 class="card-title">${habit.title}</h5>
+                 <p class="card-text">${habit.description ?? "No description"}</p>
+                 <div class="d-flex justify-content-center gap-2 mt-auto">
+                     <button class="btn btn-primary" onclick="startHabit(${habit.id})">
+                       Start Habit
+                     </button>
+                     <button class="btn btn-danger" onclick="deleteHabit(${habit.id})">
+                         Delete Habit
+                     </button>
+            </div>
+         </div>
+`
 
             habitList.appendChild(card)
         })
