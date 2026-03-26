@@ -1,16 +1,14 @@
-// ===============================
+
 // GLOBAL DATA (metadata)
 // Här sparas data från backend
-// ===============================
+
 let habitMeta = {
     frequencies: [],
     categories: []
 }
 
-// ===============================
 // HÄMTA METADATA
 // Hämtar frequencies och categories från backend
-// ===============================
 async function loadHabitMeta() {
     try {
         const response = await fetch("/api/habits/meta")
@@ -30,10 +28,8 @@ async function loadHabitMeta() {
     }
 }
 
-// ===============================
 // FREQUENCY DROPDOWN
 // Fyller frequency-dropdownen
-// ===============================
 function renderFrequencyOptions() {
     const frequencySelect = document.getElementById("frequency")
 
@@ -54,10 +50,8 @@ function renderFrequencyOptions() {
     })
 }
 
-// ===============================
 // CATEGORY DROPDOWN MED CHECKBOXAR
 // Skapar checkboxar inuti dropdown-menyn
-// ===============================
 function renderCategoryOptions() {
     const container = document.getElementById("categories-container")
 
@@ -94,10 +88,8 @@ function renderCategoryOptions() {
     updateCategoryDropdownLabel()
 }
 
-// ===============================
 // UPPDATERA TEXTEN PÅ CATEGORY-DROPDOWNEN
 // Visar valda categories i knappen
-// ===============================
 function updateCategoryDropdownLabel() {
     const button = document.getElementById("categoryDropdownButton")
 
@@ -172,10 +164,9 @@ async function loadHabits() {
     }
 }
 
-// ===============================
 // START HABIT (LOGG)
-// Skapar en logg när man klickar på Start Habit
-// ===============================
+//Skapar en logg när man klickar på Start Habit
+
 async function startHabit(habitId) {
     try {
         const response = await fetch("/api/logs", {
@@ -203,10 +194,8 @@ async function startHabit(habitId) {
     }
 }
 
-// ===============================
 // DELETE HABIT
 // Tar bort en habit
-// ===============================
 async function deleteHabit(habitId) {
     try {
         const response = await fetch(`/api/habits/${habitId}`, {
@@ -226,10 +215,8 @@ async function deleteHabit(habitId) {
     }
 }
 
-// ===============================
 // CREATE HABIT (FORM)
 // Hämtar formulärvärden och skickar till backend
-// ===============================
 document.getElementById("habit-form").addEventListener("submit", async (e) => {
     e.preventDefault()
 
@@ -284,10 +271,8 @@ document.getElementById("habit-form").addEventListener("submit", async (e) => {
     }
 })
 
-// ===============================
 // INIT
 // Körs när sidan laddas
-// ===============================
 async function initHabitsPage() {
     await loadHabitMeta()
     await loadHabits()
