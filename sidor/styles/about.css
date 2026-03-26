@@ -1,17 +1,6 @@
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    
-}
 
-.nav-container a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    margin: 0 10px;
-}
+
+
 
 footer {
     text-align: center;
@@ -51,8 +40,4 @@ footer div a {
     align-items: center;
 }
 
-.nav-container h1 {
-    font-size: 2.5rem;
-    margin: 0;
-    color: #00846e;
-}
+
