@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Log } from "../models/mongo"
+import { Log } from "../mongo"
 
 //get logs from Mongodb
 export const getLogs = async (req: Request, res: Response) => {
