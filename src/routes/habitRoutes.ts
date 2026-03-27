@@ -1,25 +1,29 @@
-import  Express  from "express"
+import Express from "express"
 
-//import controller functions
-import{
+// Importerar controller-funktioner
+import {
     getHabits,
+    getHabitMeta,
     createHabit,
     updateHabit,
     deleteHabit
-} from"../controllers/habitController"
+} from "../controllers/habitController"
 
 const router = Express.Router()
 
-//get
+// Hämtar metadata för habits, t.ex. categories och frequencies
+router.get("/habits/meta", getHabitMeta)
+
+// Hämtar alla habits
 router.get("/habits", getHabits)
 
-//post
+// Skapar en ny habit
 router.post("/habits", createHabit)
 
-//put
+// Uppdaterar en habit
 router.put("/habits/:id", updateHabit)
 
-//delete
+// Tar bort en habit
 router.delete("/habits/:id", deleteHabit)
 
 export default router
