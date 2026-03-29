@@ -3,22 +3,23 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="styles/habits.css" />
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
             crossorigin="anonymous"
         />
-        <title>Document</title>
+        <link rel="stylesheet" href="styles/navbar.css" />
+        <link rel="stylesheet" href="styles/habits.css" />
+        <title>Habits</title>
     </head>
     <body>
         <nav>
             <section class="nav-container">
-                <h1>HabitTracker</h1>
+                <h1>Habito</h1>
                 <div>
                     <a href="index.html">Home</a>
-                    <a href="habits.html">Habits </a>
+                    <a href="habits.html">Habits</a>
                     <a href="profile.html">Profile</a>
                     <a href="about.html">About</a>
                     <a href="contact.html">Contact</a>
@@ -26,26 +27,97 @@
             </section>
         </nav>
 
+        <main class="container mt-4">
+            <h2 class="mb-4">Your Habits</h2>
+
+            <!-- Formulär för att skapa en ny habit -->
+            <form id="habit-form" class="mb-4">
+                <div class="mb-2">
+                    <input
+                        id="title"
+                        class="form-control"
+                        type="text"
+                        placeholder="Habit title"
+                        required
+                    />
+                </div>
+
+                <div class="mb-2">
+                    <input
+                        id="description"
+                        class="form-control"
+                        type="text"
+                        placeholder="Description"
+                    />
+                </div>
+
+                <!-- Dropdown-meny för categories -->
+                <div class="mb-3">
+                    <label class="form-label">Categories</label>
+
+                    <div class="dropdown">
+                        <button
+                            class="btn btn-outline-secondary dropdown-toggle w-100 text-start"
+                            type="button"
+                            id="categoryDropdownButton"
+                            data-bs-toggle="dropdown"
+                            data-bs-auto-close="outside"
+                            aria-expanded="false"
+                        >
+                            Choose categories
+                        </button>
+
+                        <!-- Här renderas alla category-checkboxar -->
+                        <div
+                            class="dropdown-menu w-100 p-3"
+                            id="categories-container"
+                        ></div>
+                    </div>
+                </div>
+
+                <!-- Dropdown för frequency -->
+                <div class="mb-3">
+                    <label for="frequency" class="form-label">Frequency</label>
+                    <select id="frequency" class="form-select">
+                        <option value="">Choose frequency</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-success" type="submit">
+                    Create Habit
+                </button>
+            </form>
+
+            <!-- Här visas alla habits -->
+            <div id="habit-list"></div>
+        </main>
+
         <footer>
             <div>
                 <h4>Contact</h4>
-                <a href="#">Email Us</a>
+                <a href="contact.html">Email Us</a>
                 <a href="#">Facebook</a>
                 <a href="#">Twitter</a>
             </div>
             <div>
                 <h4>Habito</h4>
                 <a href="index.html">Home</a>
-                <a href="habits.html">Habits </a>
+                <a href="habits.html">Habits</a>
                 <a href="profile.html">Profile</a>
             </div>
             <div>
                 <h4>About</h4>
-                <a href="#">Our Story</a>
-                <a href="#">Team</a>
-                <a href="#">Careers</a>
+                <a href="about.html">Our Story</a>
             </div>
-            <script src="scripts/habits.js"></script>
         </footer>
+
+        <!-- Bootstrap JS behövs för att dropdown-menyn ska fungera -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"
+        ></script>
+
+        <script src="scripts/habits.js"></script>
     </body>
 </html>

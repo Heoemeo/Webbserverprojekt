@@ -9,10 +9,9 @@ dotenv.config()
 import habitRoutes from './routes/habitRoutes'
 import logRoutes from './routes/logRoutes'
 
-//creates express server
 const app = express()
+const PORT = Number(process.env.PORT || 3000)
 
-//middleware, allow server to read json data
 app.use(express.json())
 
 //enable cors so the frontend can talk to backend
