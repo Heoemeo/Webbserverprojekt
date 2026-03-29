@@ -1,26 +1,35 @@
-import "dotenv/config"
-import express from "express"
-import cors from "cors"
+import express from 'express'
+import cors from 'cors'
+import dotenv from 'dotenv'
+import sequelize from './config/db'
+import authRoutes from './routes/authRoutes'
+dotenv.config()
 
-import habitRoutes from "./routes/habitRoutes"
-import logRoutes from "./routes/logRoutes"
-import { connectMongo } from "./mongo"
+//import routes
+import habitRoutes from './routes/habitRoutes'
+import logRoutes from './routes/logRoutes'
 
 const app = express()
 const PORT = Number(process.env.PORT || 3000)
 
 app.use(express.json())
-app.use(cors())
 
+//enable cors so the frontend can talk to backend
+app.use(
+    cors({
+        origin: '*',
+        methods: ['GET', 'POST'],
+        allowedHeaders: ['Content-Type', 'Authorization']
+    })
+)
 
-app.use(express.static("sidor"))
-app.use("/images", express.static("images"))
+//connect routes to api
+app.use('/api/auth', authRoutes)
 
-app.use("/api", habitRoutes)
-app.use("/api", logRoutes)
+app.use('/api', habitRoutes)
 
-connectMongo()
+app.use('/api', logRoutes)
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
+sequelize.sync({ alter: true }).then(() => {
+    app.listen(3000, () => console.log('Server running on port 3000'))
 })
