@@ -23,7 +23,10 @@ const PORT = Number(process.env.PORT || 3000)
 // Gör så att servern kan läsa JSON i requests
 app.use(express.json())
 
-// Tillåter frontend att prata med backend (CORS)
+app.use(express.static('sidor'))
+app.use('/images', express.static('images'))
+
+//enable cors so the frontend can talk to backend
 app.use(
     cors({
         origin: '*', // tillåter alla origins (bra för utveckling)

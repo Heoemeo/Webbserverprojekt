@@ -1,84 +1,45 @@
-
-
-footer {
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+body {
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
-    justify-content: space-evenly;
+    flex-direction: column;
+    background-image: url('../../images/Bakgrund_profil.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
-footer div {
+/* Nav css */
+
+.nav-container {
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
 }
 
-footer div a {
+.nav-container a {
     text-decoration: none;
     color: black;
+    font-weight: bold;
     margin: 0 10px;
-}
-
-.profile-container {
-    padding: 20px;
-    border-radius: 5px;
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 20rem;
-}
-
-.button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    gap: 10px;
 }
 
 .nav-container h1 {
     font-size: 2.5rem;
-    margin: 0;
-    color: #00846e;
+    color: var(--green);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap');
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+.nav-container div a:hover {
+    color: var(--green);
 }
 
-:root {
-    --green: #00846e;
-    --green-light: #e6f4f1;
-    --black: #111;
-    --gray: #666;
-    --border: #ddd;
-}
-
-body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--green-light);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
+/* main css */
 main {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 40px 20px 120px;
+    margin-top: 26vh;
 }
 
 .card {
@@ -90,8 +51,40 @@ main {
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
 }
 
+/* .card h2 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 6px;
+}
+
+.card p {
+    color: white;
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 6px;
+}
+
+input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: border-color 0.2s;
+} */
+
 .card h2 {
-    font-family: 'DM Serif Display', serif;
     font-size: 2rem;
     color: var(--black);
     margin-bottom: 6px;
@@ -111,21 +104,11 @@ label {
     margin-bottom: 6px;
 }
 
-#error-msg {
-    color: red;
-    font-size: 0.85rem;
-}
-#success-msg {
-    color: green;
-    font-size: 0.85rem;
-}
-
 input {
     width: 100%;
     padding: 10px 14px;
     border: 1.5px solid var(--border);
     border-radius: 8px;
-    font-family: 'DM Sans', sans-serif;
     font-size: 0.95rem;
     margin-bottom: 18px;
     outline: none;
@@ -136,13 +119,16 @@ input:focus {
     border-color: var(--green);
 }
 
-.forgot {
-    display: block;
-    text-align: right;
-    font-size: 0.82rem;
-    color: var(--green);
-    text-decoration: none;
-    margin-bottom: 22px;
+#error-msg {
+    color: red;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+#success-msg {
+    color: green;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
 }
 
 .btn-primary {
@@ -152,7 +138,7 @@ input:focus {
     color: white;
     border: none;
     border-radius: 8px;
-    font-family: 'DM Sans', sans-serif;
+
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -188,10 +174,27 @@ input:focus {
     right: 0;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --green: #00846e;
+    --green-light: #e6f4f1;
+    --black: #111;
+    --gray: #666;
+    --border: #ddd;
+}
+
 .register-link {
     text-align: center;
     font-size: 0.88rem;
     color: var(--gray);
+    /* color: white; */
 }
 
 .register-link a {
@@ -200,9 +203,39 @@ input:focus {
     text-decoration: none;
 }
 
+/* Footer css */
+footer {
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+}
+
+footer div {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+footer div a {
+    text-decoration: none;
+    color: black;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    color: var(--green);
+}
+
+.footer-toggle {
+    display: none;
+}
+
 /* Quarries */
 
-/* laptops */
+/* laptops (max 1024px) */
 @media (max-width: 1024px) {
     .nav-container h1 {
         font-size: 2rem;
@@ -213,7 +246,7 @@ input:focus {
     }
 }
 
-/* Media quarry tablet */
+/* Media quarry tablet (max 768px) */
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
@@ -254,7 +287,7 @@ input:focus {
     }
 }
 
-/* Mobile (max 480px) */
+/* Mobil (max 480px) */
 @media (max-width: 480px) {
     .nav-container {
         padding: 12px;
@@ -296,23 +329,36 @@ input:focus {
         padding: 11px;
         font-size: 0.95rem;
     }
+}
 
-    footer {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 20px 12px 16px;
-        position: static;
-    }
+footer {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+}
 
-    footer div {
-        align-items: center;
-        gap: 4px;
-    }
+.footer-section {
+    border-bottom: 1px solid var(--border);
+}
 
-    footer h4 {
-        margin-bottom: 4px;
-    }
+.footer-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 14px 16px;
+    background: white;
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.footer-links {
+    display: none;
+    flex-direction: column;
+    padding: 8px 16px 14px;
+    gap: 8px;
 }
 
 /* Små skärmar / ser bättre ut när man drar sträcket i "responsive" */
