@@ -1,48 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-            crossorigin="anonymous"
-        />
-        <link rel="stylesheet" href="styles/navbar.css" />
-        <link rel="stylesheet" href="styles/habits.css" />
-        <link rel="stylesheet" href="styles/responsive.css" />
-        <title>Habits</title>
-    </head>
-    <body>
-        <nav>
-            <section class="nav-container">
-                <h1>Habito</h1>
-                <button class="hamburger" onclick="toggleMenu()">☰</button>
-                <div class="nav-links">
-                    <a href="index.html">Home</a>
-                    <a href="habits.html">Habits</a>
-                    <a href="profile.html">Profile</a>
-                    <a href="about.html">About</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-            </section>
-        </nav>
-
-        <main class="container mt-4" id="main-content">
-            <h2 class="mb-4">Your Habits</h2>
-
-            <!-- Formulär för att skapa en ny habit -->
-            <form id="habit-form" class="mb-4">
-                <div class="mb-2">
-                    <input
-                        id="title"
-                        class="form-control"
-                        type="text"
-                        placeholder="Habit title"
-                        required
-                    />
-                </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Habits</title>
 
     <!-- Bootstrap -->
     <link
@@ -50,55 +11,51 @@
         rel="stylesheet"
     />
 
-    <!-- Din egen CSS -->
-    <link rel="stylesheet" href="/styles/habits.css" />
-    <link rel="stylesheet" href="/styles/navbar.css" />
+    <!-- Din CSS -->
+    <link rel="stylesheet" href="styles/navbar.css" />
+    <link rel="stylesheet" href="styles/habits.css" />
+    <link rel="stylesheet" href="styles/responsive.css" />
 </head>
 <body>
     <!-- NAVBAR -->
-    <!-- Här ligger Habito-loggan och länkarna -->
     <nav>
         <section class="nav-container">
             <h1>
                 <a href="index.html" style="text-decoration: none; color: inherit;">
-                   Habito
-               </a>
-           </h1>
-            <div>
+                    Habito
+                </a>
+            </h1>
+
+            <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="habits.html">Habits</a>
                 <a href="profile.html">Profile</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
+                <a href="dashboard.html">Dashboard</a>
             </div>
         </section>
     </nav>
 
     <!-- Huvudinnehåll -->
-    <!-- container här istället för på body, så navbar/footer kan behålla sin fulla bredd -->
     <main class="container py-4">
-        <!-- Toppsektion med rubrik + logout-knapp -->
+        <!-- Rubrik + login/logout -->
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="mb-0">Your Habits</h2>
 
             <div class="d-flex gap-2">
-        </div>
-        </div>
-    <div class="d-flex gap-2">
-        <!-- Login-knapp -->
-        <button id="login-btn" class="btn btn-outline-primary">
-            Login
-        </button>
+               <button id="login-btn" type="button" class="btn btn-outline-primary">
+                  Login
+              </button>
 
-        <!-- Logout-knapp -->
-        <!-- hidden från början eftersom användaren inte ska se den om den inte är inloggad -->
-        <button id="logout-btn" class="btn btn-outline-danger" style="display: none;">
-            Log out
-        </button>
-</div>
+               <button id="logout-btn" type="button" class="btn btn-outline-danger" style="display: none;">
+                  Log out
+               </button>
+            </div>
+        </div>
+
         <!-- Formulär för att skapa habit -->
         <form id="habit-form" class="mb-4">
-            <!-- Titel -->
             <div class="mb-2">
                 <input
                     id="title"
@@ -109,7 +66,6 @@
                 />
             </div>
 
-            <!-- Beskrivning -->
             <div class="mb-2">
                 <input
                     id="description"
@@ -119,7 +75,6 @@
                 />
             </div>
 
-            <!-- Kategorier -->
             <div class="mb-3">
                 <label class="form-label">Categories</label>
 
@@ -135,7 +90,6 @@
                         Choose categories
                     </button>
 
-                    <!-- Här fyller JS in checkboxar -->
                     <div
                         class="dropdown-menu w-100 p-3"
                         id="categories-container"
@@ -143,7 +97,6 @@
                 </div>
             </div>
 
-            <!-- Frequency -->
             <div class="mb-3">
                 <label for="frequency" class="form-label">Frequency</label>
                 <select id="frequency" class="form-select">
@@ -151,17 +104,14 @@
                 </select>
             </div>
 
-            <!-- Skapa habit -->
             <button class="btn btn-success" type="submit">
                 Create Habit
             </button>
         </form>
 
-        <!-- Ej startade habits -->
         <h2 class="mt-4">Active Habits</h2>
         <div id="habit-list"></div>
 
-        <!-- Progress-sektion -->
         <h2 class="mt-5">My Progress</h2>
         <div id="log-list"></div>
     </main>
@@ -190,6 +140,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Din JS -->
-    <script src="/scripts/habits.js"></script>
+    <script src="scripts/habits.js"></script>
 </body>
 </html>

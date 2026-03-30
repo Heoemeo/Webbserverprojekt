@@ -69,8 +69,8 @@ submitBtn.addEventListener('click', async () => {
 
     // 🔥 Vänta lite så användaren hinner se meddelandet
     setTimeout(() => {
-        window.location.href = '/habits.html'
-    }, 800)
+    window.location.href = 'dashboard.html'
+}, 800)
         }         else {
             successMsg.textContent = 'Account created! You can now log in.'
             switchBtn.click()
