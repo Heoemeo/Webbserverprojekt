@@ -14,6 +14,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    background-color: white;
 }
 
 .nav-container a {
@@ -43,7 +44,8 @@ main {
 }
 
 .card {
-    background: white;
+    background: rgba(255, 255, 255, 0.85);
+    opacity: 0.9;
     border-radius: 12px;
     padding: 48px 40px;
     width: 100%;
@@ -91,7 +93,7 @@ input {
 }
 
 .card p {
-    color: var(--gray);
+    color: black;
     font-size: 0.9rem;
     margin-bottom: 28px;
 }
@@ -188,6 +190,9 @@ input:focus {
     --black: #111;
     --gray: #666;
     --border: #ddd;
+}
+body {
+    font-family: 'Inter', sans-serif;
 }
 
 .register-link {

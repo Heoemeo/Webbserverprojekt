@@ -11,15 +11,52 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="styles/navbar.css" />
+        <link rel="stylesheet" href="styles/responsive.css" />
         <title>Document</title>
     </head>
     <body>
         <nav>
             <section class="nav-container">
                 <h1>Habito</h1>
-                <div>
+                <button class="hamburger" onclick="toggleMenu()">
+                    <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <line
+                            x1="4"
+                            y1="6"
+                            x2="20"
+                            y2="6"
+                            stroke="#1A1A1A"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+                        <line
+                            x1="4"
+                            y1="12"
+                            x2="20"
+                            y2="12"
+                            stroke="#1A1A1A"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+                        <line
+                            x1="4"
+                            y1="18"
+                            x2="20"
+                            y2="18"
+                            stroke="#1A1A1A"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+                    </svg>
+                </button>
+                <div class="nav-links">
                     <a href="index.html">Home</a>
-                    <a href="habits.html">Habits </a>
+                    <a href="habits.html">Habits</a>
                     <a href="profile.html">Profile</a>
                     <a href="about.html">About</a>
                     <a href="contact.html">Contact</a>
@@ -48,24 +85,50 @@
         </section>
 
         <footer>
-            <div>
-                <h4>Contact</h4>
-                <a href="#">Email Us</a>
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
+            <div class="footer-section">
+                <button class="footer-toggle" onclick="toggleFooter(this)">
+                    Contact <span>▼</span>
+                </button>
+                <div class="footer-links">
+                    <a href="#">Email Us</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                </div>
             </div>
-            <div>
-                <h4>Habito</h4>
-                <a href="index.html">Home</a>
-                <a href="habits.html">Habits </a>
-                <a href="profile.html">Profile</a>
+            <div class="footer-section">
+                <button class="footer-toggle" onclick="toggleFooter(this)">
+                    Habito <span>▼</span>
+                </button>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="habits.html">Habits</a>
+                    <a href="profile.html">Profile</a>
+                </div>
             </div>
-            <div>
-                <h4>About</h4>
-                <a href="#">Our Story</a>
-                <a href="#">Team</a>
-                <a href="#">Careers</a>
+            <div class="footer-section">
+                <button class="footer-toggle" onclick="toggleFooter(this)">
+                    About <span>▼</span>
+                </button>
+                <div class="footer-links">
+                    <a href="#">Our Story</a>
+                    <a href="#">Team</a>
+                    <a href="#">Careers</a>
+                </div>
             </div>
         </footer>
+        <script>
+            function toggleMenu() {
+                document.querySelector('.nav-links').classList.toggle('active')
+            }
+        </script>
+        <script>
+            function toggleFooter(btn) {
+                const links = btn.nextElementSibling
+                const arrow = btn.querySelector('span')
+                const isOpen = links.style.display === 'flex'
+                links.style.display = isOpen ? 'none' : 'flex'
+                arrow.textContent = isOpen ? '▼' : '▲'
+            }
+        </script>
     </body>
 </html>

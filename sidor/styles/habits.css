@@ -2,34 +2,32 @@
     display: flex;
     gap: 10px;
 }
-main.container{
+main.container {
     background: transparent;
     max-width: 50%;
 }
-body{
-    padding-bottom: 120px;
-      margin: 0;
-    min-height: 100vh;
 
-    background: linear-gradient(
-        to bottom,
-        white 20%,
-        #0c8a49 80%
-    );
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    background: linear-gradient(to bottom, white 20%, #0c8a49 80%);
 }
-.container{
-    background-color:#00ace6;
+.container {
+    background-color: #00ace6;
 }
 
 footer {
     text-align: center;
     padding: 10px;
-    position: fixed;
     width: 100%;
     bottom: 0;
     display: flex;
     justify-content: space-evenly;
     background-color: #0c8a49;
+    margin-top: auto;
 }
 
 footer div {
@@ -44,10 +42,9 @@ footer div a {
     margin: 0 10px;
 }
 
-
 /* Formuläret får lite snyggare box */
 #habit-form {
-    background-color:white;
+    background-color: white;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -74,7 +71,7 @@ footer div a {
 /* Rubrikdelen i kortet */
 #habit-list .card-header {
     background-color: #0c8a49;
-    color:white;
+    color: white;
     font-weight: bold;
 }
 
@@ -95,4 +92,10 @@ footer div a {
 /* Knapparna */
 #habit-list .btn {
     min-width: 120px;
+}
+
+@media (max-width: 768px) {
+    .footer-toggle {
+        background-color: #0c8a49 !important;
+    }
 }
