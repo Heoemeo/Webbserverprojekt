@@ -10,9 +10,31 @@ export const connectMongo = async () => {
 }
 
 const logSchema = new mongoose.Schema({
-    habit_id: Number,
-    date: Date,
-    completed: Boolean
+    // Vilken användare loggen tillhör
+    user_id: {
+        type: Number,
+        required: true
+    },
+
+    // Vilken habit som loggades
+    habit_id: {
+        type: Number,
+        required: true
+    },
+
+    // Datum när habiten loggades
+    date: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+
+    // Om habiten är genomförd
+    completed: {
+        type: Boolean,
+        required: true,
+        default: true
+    }
 })
 
 export const Log = mongoose.model("Log", logSchema)

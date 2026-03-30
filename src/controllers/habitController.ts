@@ -64,13 +64,15 @@ export const getHabitMeta = async (_req: Request, res: Response) => {
 }
 
 // Hämtar alla habits
-// Hämtar även frequency och alla categories via habit_categories
+// Hämtar också frequency, target_count och categories
 export const getHabits = async (_req: Request, res: Response) => {
     try {
+        // Kollar vilka tabeller som finns
         const hasFrequencyTable = await tableExists("frequencies")
         const hasHabitCategoriesTable = await tableExists("habit_categories")
         const hasCategoriesTable = await tableExists("categories")
 
+        // Hämtar rätt kolumnnamn för frekvens och kategori
         const frequencyLabelColumn = hasFrequencyTable
             ? await getLabelColumn("frequencies")
             : null
@@ -79,6 +81,7 @@ export const getHabits = async (_req: Request, res: Response) => {
             ? await getLabelColumn("categories")
             : null
 
+        // Grundfält från habits-tabellen
         const selectParts = [
             "h.id",
             "h.user_id",
@@ -89,7 +92,10 @@ export const getHabits = async (_req: Request, res: Response) => {
             "h.created_at"
         ]
 
+        // Här sparar vi JOIN-delar
         const joinParts: string[] = []
+
+        // Här sparar vi GROUP BY-delar
         const groupByParts = [
             "h.id",
             "h.user_id",
@@ -100,27 +106,42 @@ export const getHabits = async (_req: Request, res: Response) => {
             "h.created_at"
         ]
 
-        // Kopplar habits till frequencies om frequencies-tabellen finns
+        // Om frequencies-tabellen finns
         if (hasFrequencyTable && frequencyLabelColumn) {
+            // Hämtar frekvensens namn
             selectParts.push(`f.\`${frequencyLabelColumn}\` AS frequency`)
+
+            // Hämtar målet för progressbaren
+            selectParts.push("f.target_count AS target_count")
+
+            // JOIN mot frequencies
             joinParts.push("LEFT JOIN frequencies f ON h.frequency_id = f.id")
+
+            // Lägg till i GROUP BY
             groupByParts.push(`f.\`${frequencyLabelColumn}\``)
+            groupByParts.push("f.target_count")
         } else {
+            // Fallback om frequencies saknas
             selectParts.push("NULL AS frequency")
+            selectParts.push("1 AS target_count")
         }
 
-        // Kopplar habits till habit_categories och categories
-        // GROUP_CONCAT gör att flera categories visas som en kommaseparerad text
+        // Om både habit_categories och categories finns
         if (hasHabitCategoriesTable && hasCategoriesTable && categoryLabelColumn) {
+            // Hämtar alla kategorinamn som en kommaseparerad sträng
             selectParts.push(
                 `GROUP_CONCAT(DISTINCT c.\`${categoryLabelColumn}\` ORDER BY c.\`${categoryLabelColumn}\` SEPARATOR ', ') AS categories`
             )
+
+            // JOIN mot kopplingstabellen och categories
             joinParts.push("LEFT JOIN habit_categories hc ON h.id = hc.habit_id")
             joinParts.push("LEFT JOIN categories c ON hc.category_id = c.id")
         } else {
+            // Fallback om categories saknas
             selectParts.push("NULL AS categories")
         }
 
+        // Bygger SQL-frågan
         const query = `
             SELECT ${selectParts.join(", ")}
             FROM habits h
@@ -129,7 +150,10 @@ export const getHabits = async (_req: Request, res: Response) => {
             ORDER BY h.id DESC
         `
 
+        // Kör queryn
         const [rows] = await db.query(query)
+
+        // Skickar tillbaka habits till frontend
         res.json(rows)
     } catch (error) {
         console.error("Error fetching habits:", error)

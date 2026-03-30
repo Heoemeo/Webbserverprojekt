@@ -61,9 +61,17 @@ submitBtn.addEventListener('click', async () => {
         }
 
         if (isLogin) {
-            localStorage.setItem('token', data.token)
-            successMsg.textContent = 'Logged in successfully!'
-        } else {
+    // Sparar token i localStorage
+    localStorage.setItem('token', data.token)
+
+    // Visar success message
+    successMsg.textContent = 'Logged in successfully!'
+
+    // 🔥 Vänta lite så användaren hinner se meddelandet
+    setTimeout(() => {
+        window.location.href = '/habits.html'
+    }, 800)
+        }         else {
             successMsg.textContent = 'Account created! You can now log in.'
             switchBtn.click()
         }

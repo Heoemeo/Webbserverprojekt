@@ -1,4 +1,7 @@
-
+#auth-buttons {
+    display: flex;
+    gap: 10px;
+}
 main.container{
     background: transparent;
     max-width: 50%;
@@ -10,8 +13,8 @@ body{
 
     background: linear-gradient(
         to bottom,
-        #00ace6 20%,
-        #00846e 80%
+        white 20%,
+        #0c8a49 80%
     );
 }
 .container{
@@ -26,7 +29,7 @@ footer {
     bottom: 0;
     display: flex;
     justify-content: space-evenly;
-    background-color: #00846e;
+    background-color: #0c8a49;
 }
 
 footer div {
@@ -70,7 +73,7 @@ footer div a {
 
 /* Rubrikdelen i kortet */
 #habit-list .card-header {
-    background-color: #00846e;
+    background-color: #0c8a49;
     color:white;
     font-weight: bold;
 }
