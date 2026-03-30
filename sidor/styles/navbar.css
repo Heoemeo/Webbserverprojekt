@@ -1,7 +1,5 @@
 nav {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     z-index: 10;
 }
@@ -15,7 +13,7 @@ nav {
 
 .nav-container a {
     text-decoration: none;
-    color: white;
+    color: #0c8a49;
     font-weight: bold;
     margin: 0 10px;
 }
