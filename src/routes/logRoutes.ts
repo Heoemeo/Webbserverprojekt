@@ -1,25 +1,21 @@
-import  express  from "express"
+import express from "express"
 
-//import mongo db functions
 import {
     getLogs,
     createLog,
     updateLog,
-    deleteLog
+    deleteLog,
+    deleteLogsByHabitId
 } from "../controllers/logController"
+
+import { authenticateToken } from "../middleware/authMiddleware"
 
 const router = express.Router()
 
-//get
-router.get("/logs",getLogs)
-
-//post
-router.post("/logs", createLog)
-
-//put
-router.put("/logs/:id", updateLog)
-
-//delete
-router.delete("/logs/:id", deleteLog)
+router.get("/logs", authenticateToken, getLogs)
+router.post("/logs", authenticateToken, createLog)
+router.put("/logs/:id", authenticateToken, updateLog)
+router.delete("/logs/:id", authenticateToken, deleteLog)
+router.delete("/logs/habit/:habitId", authenticateToken, deleteLogsByHabitId)
 
 export default router

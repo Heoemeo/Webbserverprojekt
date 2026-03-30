@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="styles/profile.css" />
+
+        <link rel="stylesheet" href="styles/navbar.css" />
+        <link rel="stylesheet" href="styles/responsive.css" />
+
+        <title>Document</title>
+    </head>
+    <body>
+        <nav>
+            <section class="nav-container">
+                <h1>Habito</h1>
+                <button class="hamburger" onclick="toggleMenu()">
+                    <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <line
+                            x1="4"
+                            y1="6"
+                            x2="20"
+                            y2="6"
+                            stroke="#1A1A1A"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+                        <line
+                            x1="4"
+                            y1="12"
+                            x2="20"
+                            y2="12"
+                            stroke="#1A1A1A"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+                        <line
+                            x1="4"
+                            y1="18"
+                            x2="20"
+                            y2="18"
+                            stroke="#1A1A1A"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+                    </svg>
+                </button>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="habits.html">Habits</a>
+                    <a href="profile.html">Profile</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="dashboard.html">Dashboard</a>
+                </div>
+            </section>
+        </nav>
+
+        <main>
+            <div class="card">
+                <h2 id="form-title">Welcome back</h2>
+                <p id="form-subtitle">
+                    Log in to track your habits and progress.
+                </p>
+
+                <div id="username-group" style="display: none">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Your name" />
+                </div>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="you@example.com" />
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="••••••••" />
+
+                <p id="error-msg"></p>
+                <p id="success-msg"></p>
+
+                <button class="btn-primary" id="submit-btn">Log In</button>
+
+                <div class="divider">or</div>
+
+                <p class="register-link">
+                    <span id="switch-text">Don't have an account?</span>
+                    <a href="#" id="switch-btn">Register</a>
+                </p>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-section">
+                <button class="footer-toggle" onclick="toggleFooter(this)">
+                    Contact <span>▼</span>
+                </button>
+                <div class="footer-links">
+                    <a href="#">Email Us</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <button class="footer-toggle" onclick="toggleFooter(this)">
+                    Habito <span>▼</span>
+                </button>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="habits.html">Habits</a>
+                    <a href="profile.html">Profile</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <button class="footer-toggle" onclick="toggleFooter(this)">
+                    About <span>▼</span>
+                </button>
+                <div class="footer-links">
+                    <a href="#">Our Story</a>
+                    <a href="#">Team</a>
+                    <a href="#">Careers</a>
+                </div>
+            </div>
+        </footer>
+
+        <script src="scripts/profile.js"></script>
+        <script src="scripts/navbar.js"></script>
+    </body>
+</html>

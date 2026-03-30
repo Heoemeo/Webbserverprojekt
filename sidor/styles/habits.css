@@ -1,0 +1,101 @@
+#auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+main.container {
+    background: transparent;
+    max-width: 50%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    background: linear-gradient(to bottom, white 20%, #0c8a49 80%);
+}
+.container {
+    background-color: #00ace6;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #0c8a49;
+    margin-top: auto;
+}
+
+footer div {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+footer div a {
+    text-decoration: none;
+    color: black;
+    margin: 0 10px;
+}
+
+/* Formuläret får lite snyggare box */
+#habit-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Här styrs layouten för alla habits */
+#habit-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 120px;
+}
+
+/* Varje habit-kort */
+#habit-list .card {
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    height: 100%;
+}
+
+/* Rubrikdelen i kortet */
+#habit-list .card-header {
+    background-color: #0c8a49;
+    color: white;
+    font-weight: bold;
+}
+
+/* Innehållet i kortet */
+#habit-list .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 180px;
+}
+
+/* Beskrivning */
+#habit-list .card-text {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Knapparna */
+#habit-list .btn {
+    min-width: 120px;
+}
+
+@media (max-width: 768px) {
+    .footer-toggle {
+        background-color: #0c8a49 !important;
+    }
+}

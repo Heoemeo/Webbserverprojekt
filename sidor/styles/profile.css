@@ -1,0 +1,382 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url('../../images/Bakgrund_profil.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Nav css */
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+}
+
+.nav-container a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.nav-container h1 {
+    font-size: 2.5rem;
+    color: var(--green);
+}
+
+.nav-container div a:hover {
+    color: var(--green);
+}
+
+/* main css */
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px 120px;
+    margin-top: 26vh;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.85);
+    opacity: 0.9;
+    border-radius: 12px;
+    padding: 48px 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+}
+
+/* .card h2 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 6px;
+}
+
+.card p {
+    color: white;
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 6px;
+}
+
+input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: border-color 0.2s;
+} */
+
+.card h2 {
+    font-size: 2rem;
+    color: var(--black);
+    margin-bottom: 6px;
+}
+
+.card p {
+    color: black;
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 6px;
+}
+
+input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: var(--green);
+}
+
+#error-msg {
+    color: red;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+#success-msg {
+    color: green;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 8px;
+
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #006a58;
+}
+
+.divider {
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.85rem;
+    margin: 20px 0;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 42%;
+    height: 1px;
+    background: var(--border);
+}
+
+.divider::before {
+    left: 0;
+}
+.divider::after {
+    right: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --green: #00846e;
+    --green-light: #e6f4f1;
+    --black: #111;
+    --gray: #666;
+    --border: #ddd;
+}
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.register-link {
+    text-align: center;
+    font-size: 0.88rem;
+    color: var(--gray);
+    /* color: white; */
+}
+
+.register-link a {
+    color: var(--green);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Footer css */
+footer {
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+}
+
+footer div {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+footer div a {
+    text-decoration: none;
+    color: black;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    color: var(--green);
+}
+
+.footer-toggle {
+    display: none;
+}
+
+/* Quarries */
+
+/* laptops (max 1024px) */
+@media (max-width: 1024px) {
+    .nav-container h1 {
+        font-size: 2rem;
+    }
+
+    .card {
+        padding: 40px 32px;
+    }
+}
+
+/* Media quarry tablet (max 768px) */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 14px 16px;
+    }
+
+    .nav-container div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .nav-container a {
+        margin: 0 6px;
+    }
+
+    main {
+        padding: 30px 16px 140px;
+    }
+
+    .card {
+        padding: 36px 28px;
+        max-width: 100%;
+    }
+
+    .card h2 {
+        font-size: 1.7rem;
+    }
+
+    footer {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 16px;
+        justify-content: space-around;
+    }
+}
+
+/* Mobil (max 480px) */
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 12px;
+    }
+
+    .nav-container h1 {
+        font-size: 1.6rem;
+    }
+
+    .nav-container a {
+        font-size: 0.85rem;
+        margin: 0 4px;
+    }
+
+    main {
+        padding: 20px 12px 180px;
+    }
+
+    .card {
+        padding: 28px 20px;
+        border-radius: 10px;
+    }
+
+    .card h2 {
+        font-size: 1.5rem;
+    }
+
+    .card p {
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+    }
+
+    input {
+        padding: 9px 12px;
+        font-size: 0.9rem;
+    }
+
+    .btn-primary {
+        padding: 11px;
+        font-size: 0.95rem;
+    }
+}
+
+footer {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+}
+
+.footer-section {
+    border-bottom: 1px solid var(--border);
+}
+
+.footer-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 14px 16px;
+    background: white;
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.footer-links {
+    display: none;
+    flex-direction: column;
+    padding: 8px 16px 14px;
+    gap: 8px;
+}
+
+/* Små skärmar / ser bättre ut när man drar sträcket i "responsive" */
+@media (max-width: 360px) {
+    .card {
+        padding: 22px 14px;
+    }
+
+    .nav-container h1 {
+        font-size: 1.4rem;
+    }
+
+    .nav-container div {
+        gap: 2px;
+    }
+}

@@ -1,29 +1,64 @@
-import  express  from "express"
-import cors from "cors"
+import express from 'express'
+import cors from 'cors'
+import dotenv from 'dotenv'
+import path from 'path'
 
-//import routes
-import habitRoutes from "./routes/habitRoutes"
-import logRoutes from "./routes/logRoutes"
+// Importerar databaskoppling och routes
+import sequelize from './config/db'
+import authRoutes from './routes/authRoutes'
+import habitRoutes from './routes/habitRoutes'
+import logRoutes from './routes/logRoutes'
+import { connectMongo } from './mongo'
+import './user'
 
-//creates express server
+// Läser .env fil
+dotenv.config()
+
+
 const app = express()
 
-//middleware, allow server to read json data
-app.use(express.json)
+// Port (standard 3000 om inget annat finns i .env)
+const PORT = Number(process.env.PORT || 3000)
+
+// Gör så att servern kan läsa JSON i requests
+app.use(express.json())
+
 
 //enable cors so the frontend can talk to backend
-app.use(cors())
+app.use(
+    cors({
+        origin: '*', // tillåter alla origins (bra för utveckling)
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: ['Content-Type', 'Authorization']
+    })
+)
 
-//connect routes to api
-app.use("/api", habitRoutes)
+// 🔥 Detta är viktigt!
+// Gör så att Express serverar dina HTML-filer (frontend)
+app.use(express.static(path.join(__dirname, "../sidor")))
 
-app.use("/api", logRoutes)
+// Gör så att Express också servar bilder från mappen "images"
+app.use('/images', express.static(path.join(__dirname, '../images')))
 
-app.listen(3000, () =>{
-    console.log("server running on port 3000")
-})
+// Routes (API endpoints)
+app.use('/api/auth', authRoutes)
+app.use('/api', habitRoutes)
+app.use('/api', logRoutes)
 
+async function startServer() {
+    try {
+        await sequelize.authenticate()
+        console.log('MySQL connected')
 
+        await sequelize.sync()
+        console.log('MySQL synced')
 
-//paket att ladda ner npm install express cors dotenv mysql2 sequelize mongoose bcrypt jsonwebtoken
-//npm install --save-dev typescript ts-node @types/node @types/express @types/cors @types/bcrypt @types/jsonwebtoken nodemon
+        await connectMongo()
+
+        app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+    } catch (error) {
+        console.error('Error starting server:', error)
+    }
+}
+
+startServer()
