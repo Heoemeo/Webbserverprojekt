@@ -1,26 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap');
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --green: #00846e;
-    --green-light: #e6f4f1;
-    --black: #111;
-    --gray: #666;
-    --border: #ddd;
-}
-
 body {
-    background: var(--green-light);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-image: url('../../images/Bakgrund_profil.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 /* Nav css */
@@ -55,6 +39,7 @@ main {
     align-items: center;
     justify-content: center;
     padding: 40px 20px 120px;
+    margin-top: 26vh;
 }
 
 .card {
@@ -65,6 +50,39 @@ main {
     max-width: 400px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
 }
+
+/* .card h2 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 6px;
+}
+
+.card p {
+    color: white;
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 6px;
+}
+
+input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: border-color 0.2s;
+} */
 
 .card h2 {
     font-size: 2rem;
@@ -156,10 +174,27 @@ input:focus {
     right: 0;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --green: #00846e;
+    --green-light: #e6f4f1;
+    --black: #111;
+    --gray: #666;
+    --border: #ddd;
+}
+
 .register-link {
     text-align: center;
     font-size: 0.88rem;
     color: var(--gray);
+    /* color: white; */
 }
 
 .register-link a {
@@ -172,11 +207,10 @@ input:focus {
 footer {
     text-align: center;
     padding: 10px;
-    position: fixed;
     width: 100%;
-    bottom: 0;
     display: flex;
     justify-content: space-evenly;
+    background-color: white;
 }
 
 footer div {
@@ -195,9 +229,13 @@ footer a:hover {
     color: var(--green);
 }
 
+.footer-toggle {
+    display: none;
+}
+
 /* Quarries */
 
-/* laptops */
+/* laptops (max 1024px) */
 @media (max-width: 1024px) {
     .nav-container h1 {
         font-size: 2rem;
@@ -208,7 +246,7 @@ footer a:hover {
     }
 }
 
-/* Media quarry tablet */
+/* Media quarry tablet (max 768px) */
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
@@ -249,7 +287,7 @@ footer a:hover {
     }
 }
 
-/* Mobile (max 480px) */
+/* Mobil (max 480px) */
 @media (max-width: 480px) {
     .nav-container {
         padding: 12px;
@@ -291,23 +329,36 @@ footer a:hover {
         padding: 11px;
         font-size: 0.95rem;
     }
+}
 
-    footer {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 20px 12px 16px;
-        position: static;
-    }
+footer {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+}
 
-    footer div {
-        align-items: center;
-        gap: 4px;
-    }
+.footer-section {
+    border-bottom: 1px solid var(--border);
+}
 
-    footer h4 {
-        margin-bottom: 4px;
-    }
+.footer-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 14px 16px;
+    background: white;
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.footer-links {
+    display: none;
+    flex-direction: column;
+    padding: 8px 16px 14px;
+    gap: 8px;
 }
 
 /* Små skärmar / ser bättre ut när man drar sträcket i "responsive" */

@@ -39,7 +39,7 @@ nav {
     font-weight: 350;
     text-align: center;
 
-    background-image: url("../../images/hero_bok.jpg");
+    background-image: url('../../images/hero_bok.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -50,7 +50,7 @@ nav {
 }
 
 .info::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.45);
@@ -102,7 +102,7 @@ footer div a {
 .nav-container h1 {
     font-size: 2.5rem;
     margin: 0;
-    color: #0FA958;
+    color: #0fa958;
 }
 
 .info .button-text button {
@@ -111,7 +111,7 @@ footer div a {
     font-weight: 650;
     color: white;
     border: none;
-    background: #0FA958;
+    background: #0fa958;
     cursor: pointer;
     text-transform: uppercase;
     border-radius: 50px;
@@ -122,6 +122,12 @@ footer div a {
     background: #0c8a49;
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(15, 169, 88, 0.4);
+}
+.footer-links {
+    display: none;
+    flex-direction: column;
+    padding: 8px 16px 14px;
+    gap: 8px;
 }
 
 /*  Media Quarry Iphone 12 Pro */
