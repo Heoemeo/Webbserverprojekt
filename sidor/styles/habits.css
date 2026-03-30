@@ -1,4 +1,7 @@
-
+#auth-buttons {
+    display: flex;
+    gap: 10px;
+}
 main.container{
     background: transparent;
     max-width: 50%;

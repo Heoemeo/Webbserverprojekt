@@ -14,6 +14,7 @@ import './models/user'
 // Läser .env fil
 dotenv.config()
 
+
 const app = express()
 
 // Port (standard 3000 om inget annat finns i .env)
@@ -33,7 +34,11 @@ app.use(
 
 // 🔥 Detta är viktigt!
 // Gör så att Express serverar dina HTML-filer (frontend)
+// Gör så att Express serverar dina HTML-filer (frontend)
 app.use(express.static(path.join(__dirname, "../sidor")))
+
+// Gör så att Express också servar bilder från mappen "images"
+app.use('/images', express.static(path.join(__dirname, '../images')))
 
 // Routes (API endpoints)
 app.use('/api/auth', authRoutes)
