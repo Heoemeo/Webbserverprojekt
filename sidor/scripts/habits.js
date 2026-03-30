@@ -9,29 +9,6 @@ let habitMeta = {
     categories: []
 }
 
-
-
-
-// Hanterar login + logout knappar
-function setupAuthButtons() {
-    const loginBtn = document.getElementById("login-btn")
-    const logoutBtn = document.getElementById("logout-btn")
-
-    if (loginBtn) {
-        loginBtn.onclick = () => {
-            window.location.href = "/profile.html"
-        }
-    }
-
-    if (logoutBtn) {
-        logoutBtn.onclick = () => {
-            localStorage.removeItem("token")
-            window.location.href = "/profile.html"
-        }
-    }
-}
-
-
 // LOAD HABIT META
 
 // Hämtar categories och frequencies från backend
@@ -220,26 +197,55 @@ async function loadHabits() {
 
 // START HABIT
 
-// Startar habiten utan att logga direkt
+// Funktion som startar en habit och sparar en logg i MongoDB
 async function startHabit(habitId) {
     try {
+        // Hämtar JWT-token från localStorage (sparas efter login)
         const token = localStorage.getItem("token")
 
+        // Om användaren inte är inloggad (ingen token)
         if (!token) {
             alert("You must be logged in to start a habit")
+            return // Avbryt funktionen
+        }
+
+        // Skickar en POST-request till backend för att skapa en logg
+        const response = await fetch(`${API_BASE}/logs`, {
+            method: "POST", // Vi skapar data
+            headers: {
+                "Content-Type": "application/json", // Vi skickar JSON
+                Authorization: `Bearer ${token}` // Skickar med JWT för auth
+            },
+            body: JSON.stringify({
+                habit_id: habitId,      // Vilken habit som startas
+                date: new Date(),       // Nuvarande datum/tid
+                completed: true         // Markerar som genomförd
+            })
+        })
+
+        // Konverterar svaret från servern till JSON
+        const data = await response.json()
+
+        // Om något gick fel (t.ex. 400/500 error)
+        if (!response.ok) {
+            alert(data.message || "Could not start habit")
             return
         }
 
-        // 🔥 Ingen POST till /logs här längre!
+        // Om allt gick bra
+        alert(data.message || "Habit started!")
 
-        alert("Habit started!")
-
-        // Ladda om UI så den flyttas till progress
+        // Laddar om habits (t.ex. uppdatera UI)
         await loadHabits()
+
+        // Laddar om loggar (MongoDB-data)
         await loadLogs()
 
     } catch (error) {
+        // Om något kraschar (t.ex. server nere)
         console.error("Could not start habit:", error)
+
+        // Visa felmeddelande till användaren
         alert("Server error while starting habit")
     }
 }
@@ -326,54 +332,32 @@ async function deleteHabit(habitId) {
     }
 }
 
-// AUTH BUTTONS (LOGIN / LOGOUT)
-// Den här funktionen kopplar funktionalitet till knapparna
 function setupAuthButtons() {
-
-    // Hämtar knapparna från HTML
     const loginBtn = document.getElementById("login-btn")
     const logoutBtn = document.getElementById("logout-btn")
-
-    // Hämtar token från localStorage
-    // Om den finns → användaren är inloggad
     const token = localStorage.getItem("token")
 
-
-    // LOGIN-KNAPP
     if (loginBtn) {
         loginBtn.onclick = () => {
-            // Skickar användaren till login-sidan
             window.location.href = "profile.html"
         }
     }
 
-    // LOGOUT-KNAPP
     if (logoutBtn) {
         logoutBtn.onclick = () => {
-            // Tar bort token (loggar ut användaren)
             localStorage.removeItem("token")
-
-            // Skickar användaren till login-sidan
-            window.location.href = "profile.html"
+            window.location.href = "habits.html"
         }
     }
 
-    // VISUAL LOGIK (VALFRI MEN BRA)
-    // Här kan vi styra vad som ska synas
-
     if (token) {
-        // Om användaren är inloggad:
-        // Visa logout, göm login
         if (loginBtn) loginBtn.style.display = "none"
         if (logoutBtn) logoutBtn.style.display = "inline-block"
     } else {
-        // Om användaren INTE är inloggad:
-        // Visa login, göm logout
         if (loginBtn) loginBtn.style.display = "inline-block"
         if (logoutBtn) logoutBtn.style.display = "none"
     }
 }
-
 
 // DELETE HABIT FROM PROGRESS
 // Delete-knappen i progress-kortet använder denna funktion
