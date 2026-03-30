@@ -14,6 +14,9 @@ const PORT = Number(process.env.PORT || 3000)
 
 app.use(express.json())
 
+app.use(express.static('sidor'))
+app.use('/images', express.static('images'))
+
 //enable cors so the frontend can talk to backend
 app.use(
     cors({
