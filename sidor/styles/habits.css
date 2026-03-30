@@ -1,21 +1,16 @@
-
-main.container{
+main.container {
     background: transparent;
     max-width: 50%;
 }
-body{
+body {
     padding-bottom: 120px;
-      margin: 0;
+    margin: 0;
     min-height: 100vh;
 
-    background: linear-gradient(
-        to bottom,
-        #00ace6 20%,
-        #00846e 80%
-    );
+    background: linear-gradient(to bottom, #00ace6 20%, #00846e 80%);
 }
-.container{
-    background-color:#00ace6;
+.container {
+    background-color: #00ace6;
 }
 
 footer {
@@ -41,10 +36,9 @@ footer div a {
     margin: 0 10px;
 }
 
-
 /* Formuläret får lite snyggare box */
 #habit-form {
-    background-color:white;
+    background-color: white;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -71,7 +65,7 @@ footer div a {
 /* Rubrikdelen i kortet */
 #habit-list .card-header {
     background-color: #00846e;
-    color:white;
+    color: white;
     font-weight: bold;
 }
 
@@ -92,4 +86,10 @@ footer div a {
 /* Knapparna */
 #habit-list .btn {
     min-width: 120px;
+}
+
+@media (max-width: 768px) {
+    .footer-toggle {
+        background-color: #00846e !important;
+    }
 }
