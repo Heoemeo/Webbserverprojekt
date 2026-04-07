@@ -67,94 +67,36 @@ export const getHabitMeta = async (_req: Request, res: Response) => {
 // Hämtar också frequency, target_count och categories
 export const getHabits = async (_req: Request, res: Response) => {
     try {
-        // Kollar vilka tabeller som finns
-        const hasFrequencyTable = await tableExists("frequencies")
-        const hasHabitCategoriesTable = await tableExists("habit_categories")
-        const hasCategoriesTable = await tableExists("categories")
-
-        // Hämtar rätt kolumnnamn för frekvens och kategori
-        const frequencyLabelColumn = hasFrequencyTable
-            ? await getLabelColumn("frequencies")
-            : null
-
-        const categoryLabelColumn = hasCategoriesTable
-            ? await getLabelColumn("categories")
-            : null
-
-        // Grundfält från habits-tabellen
-        const selectParts = [
-            "h.id",
-            "h.user_id",
-            "h.frequency_id",
-            "h.title",
-            "h.description",
-            "h.is_active",
-            "h.created_at"
-        ]
-
-        // Här sparar vi JOIN-delar
-        const joinParts: string[] = []
-
-        // Här sparar vi GROUP BY-delar
-        const groupByParts = [
-            "h.id",
-            "h.user_id",
-            "h.frequency_id",
-            "h.title",
-            "h.description",
-            "h.is_active",
-            "h.created_at"
-        ]
-
-        // Om frequencies-tabellen finns
-        if (hasFrequencyTable && frequencyLabelColumn) {
-            // Hämtar frekvensens namn
-            selectParts.push(`f.\`${frequencyLabelColumn}\` AS frequency`)
-
-            // Hämtar målet för progressbaren
-            selectParts.push("f.target_count AS target_count")
-
-            // JOIN mot frequencies
-            joinParts.push("LEFT JOIN frequencies f ON h.frequency_id = f.id")
-
-            // Lägg till i GROUP BY
-            groupByParts.push(`f.\`${frequencyLabelColumn}\``)
-            groupByParts.push("f.target_count")
-        } else {
-            // Fallback om frequencies saknas
-            selectParts.push("NULL AS frequency")
-            selectParts.push("1 AS target_count")
-        }
-
-        // Om både habit_categories och categories finns
-        if (hasHabitCategoriesTable && hasCategoriesTable && categoryLabelColumn) {
-            // Hämtar alla kategorinamn som en kommaseparerad sträng
-            selectParts.push(
-                `GROUP_CONCAT(DISTINCT c.\`${categoryLabelColumn}\` ORDER BY c.\`${categoryLabelColumn}\` SEPARATOR ', ') AS categories`
-            )
-
-            // JOIN mot kopplingstabellen och categories
-            joinParts.push("LEFT JOIN habit_categories hc ON h.id = hc.habit_id")
-            joinParts.push("LEFT JOIN categories c ON hc.category_id = c.id")
-        } else {
-            // Fallback om categories saknas
-            selectParts.push("NULL AS categories")
-        }
-
-        // Bygger SQL-frågan
-        const query = `
-            SELECT ${selectParts.join(", ")}
+        const [habits]: any = await db.query(`
+            SELECT
+                h.id,
+                h.user_id,
+                h.frequency_id,
+                h.title,
+                h.description,
+                h.is_active,
+                h.created_at,
+                f.name AS frequency,
+                IFNULL(f.target_count, 1) AS target_count,
+                GROUP_CONCAT(c.name SEPARATOR ', ') AS categories
             FROM habits h
-            ${joinParts.join(" ")}
-            GROUP BY ${groupByParts.join(", ")}
+            LEFT JOIN frequencies f ON h.frequency_id = f.id
+            LEFT JOIN habit_categories hc ON h.id = hc.habit_id
+            LEFT JOIN categories c ON hc.category_id = c.id
+            GROUP BY
+                h.id,
+                h.user_id,
+                h.frequency_id,
+                h.title,
+                h.description,
+                h.is_active,
+                h.created_at,
+                f.name,
+                f.target_count
             ORDER BY h.id DESC
-        `
+        `)
 
-        // Kör queryn
-        const [rows] = await db.query(query)
-
-        // Skickar tillbaka habits till frontend
-        res.json(rows)
+        res.json(habits)
     } catch (error) {
         console.error("Error fetching habits:", error)
         res.status(500).json({ message: "Could not fetch habits" })
